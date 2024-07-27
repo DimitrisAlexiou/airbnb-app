@@ -1,6 +1,7 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
@@ -13,9 +14,14 @@ import Input from '../inputs/Input';
 import toast from 'react-hot-toast';
 import Button from '../Button';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 const RegisterModal: React.FC = () => {
+	const router = useRouter();
+
 	const registerModal = useRegisterModal();
+	const loginModal = useLoginModal();
+
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {
@@ -39,8 +45,9 @@ const RegisterModal: React.FC = () => {
 				password: data.password,
 			})
 			.then((response) => {
+				toast.success('Account created');
 				registerModal.onClose();
-				console.log(response.data);
+				router.refresh();
 			})
 			.catch((error) => {
 				toast.error('Something went wrong.');
@@ -49,6 +56,11 @@ const RegisterModal: React.FC = () => {
 				setIsLoading(false);
 			});
 	};
+
+	const toggle = useCallback(() => {
+		registerModal.onClose();
+		loginModal.onOpen();
+	}, [loginModal, registerModal]);
 
 	const bodyContent = (
 		<div className="flex flex-col gap-4">
@@ -100,7 +112,7 @@ const RegisterModal: React.FC = () => {
 				<div className="justify-center flex flex-row items-center gap-2">
 					<div>Already have an account?</div>
 					<div
-						onClick={registerModal.onClose}
+						onClick={toggle}
 						className="text-neutral-800 cursor-pointer hover:underline"
 					>
 						<div>Log in</div>
