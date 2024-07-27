@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 import Button from '../Button';
 import useLoginModal from '@/app/hooks/useLoginModal';
 
-const LoginModal = () => {
+const LoginModal: React.FC = () => {
 	const router = useRouter();
 	const registerModal = useRegisterModal();
 	const loginModal = useLoginModal();

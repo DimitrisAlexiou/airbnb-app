@@ -2,7 +2,7 @@
 
 import { BiSearch } from 'react-icons/bi';
 
-const Search = () => {
+const Search: React.FC = () => {
 	return (
 		<div className="border-[1px] w-full md:w-auto py-2 rounded-full shodow-sm hover:shadow-md transition cursor-pointer">
 			<div className="flex flex-row items-center justify-between">

@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 import Button from '../Button';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 
-const RegisterModal = () => {
+const RegisterModal: React.FC = () => {
 	const registerModal = useRegisterModal();
 	const [isLoading, setIsLoading] = useState(false);
 
