@@ -88,7 +88,7 @@ const RentModal: React.FC = () => {
 		axios
 			.post('/api/listings', data)
 			.then(() => {
-				toast.success('Listing created successfully!');
+				toast.success('Listing created');
 				router.refresh();
 				reset();
 				setStep(STEPS.CATEGORY);
