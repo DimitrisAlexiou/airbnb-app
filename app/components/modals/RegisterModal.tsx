@@ -1,7 +1,6 @@
 'use client';
 
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
@@ -17,8 +16,6 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 
 const RegisterModal: React.FC = () => {
-	const router = useRouter();
-
 	const registerModal = useRegisterModal();
 	const loginModal = useLoginModal();
 
@@ -44,12 +41,12 @@ const RegisterModal: React.FC = () => {
 				email: data.email,
 				password: data.password,
 			})
-			.then((response) => {
+			.then(() => {
 				toast.success('Account created');
 				registerModal.onClose();
-				router.refresh();
+				loginModal.onOpen();
 			})
-			.catch((error) => {
+			.catch(() => {
 				toast.error('Something went wrong.');
 			})
 			.finally(() => {
